@@ -41,15 +41,15 @@ parser.add_argument('--target', default=0)
 current_time = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
 args = parser.parse_args()
-args.wl_weight = 8
-args.wl_grad = 8
-args.wl_error = 8
+args.wl_weight = 5
+args.wl_grad = 5
+args.wl_error = 5
 args.batch_size = 1024
 args.inference = 1            # set to run inference simulation
 # Hardware Properties
 args.subArray = 128           # size of subArray (e.g. 128*128)
 args.ADCprecision = 6         # ADC precision (e.g. 5-bit)
-args.cellBit = 4              # cell precision (e.g. 4-bit/cell)
+args.cellBit = 5             # cell precision (e.g. 4-bit/cell)
 args.onoffratio = 10          # device on/off ratio (e.g. Gmax/Gmin = 3)
 # if do not run the device retention / conductance variation effects, set args.vari=0, args.v=0
 args.vari = 0                 # conductance variation (e.g. 0.1 standard deviation to generate random variation)
@@ -57,6 +57,12 @@ args.t = 0                    # retention time
 args.v = 0                    # drift coefficient
 args.detect = 1               # if 1, fixed-direction drift, if 0, random drift
 args.target = 0.5             # drift target for fixed-direction drift
+args.max_level = 32
+args.c2cVari = 0.003
+args.d2cVari = 0.0
+args.nonlinearityLTP = 1.75
+args.nonlinearityLTD = 1.46
+args.cellBit = 5
 
 args.logdir = os.path.join(os.path.dirname(__file__), args.logdir)
 args = make_path.makepath(args,['log_interval','test_interval','logdir','epochs','gpu','ngpu','debug'])
